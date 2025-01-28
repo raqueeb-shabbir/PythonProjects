@@ -2,13 +2,15 @@ import random
 #From lines 3 to 36 defines the game class
 class Game:
     #__init__ initialises the game with tries of 10 and range of numbers 1 to 100 and generates cpu_num
+    #__init is constructor method, where Python calls it when creating a new object from class. First parameter = self referring to current object of class
     def  __init__(self, tries=10, number_range =(1,100)):
         self.tries = tries
         self.number_range = number_range
         #number_range [0] accesses the 1 from number_range list and number_range[1] accesses the 100 from the list 
         self.cpu_num = random.randint(self.number_range[0], self.number_range[1])
         self.attempts = 0
-    #Checks the user's guess and returns a hint based on the user     
+    #Checks the user's guess and returns a hint based on the user   
+    # def get_hint = regular method to define behaviour of objectes created from class   
     def get_hint(self,guess):
         if guess < self.cpu_num:
             return "Too Low!"
@@ -41,3 +43,6 @@ class Game:
 game=Game()
 
 game.play()
+
+##__init__ = special method to setup object when created and automatically called 
+#get_hint and play are regular methods defined to implement actions or logic
