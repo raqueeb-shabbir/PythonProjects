@@ -1,0 +1,31 @@
+import requests
+#Set city name 
+city_name = "London"
+#defining function to get data from URL
+def get_data():
+    #Set url api and also added units to metric
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city_name}&appid={f'51b82b7693a20030b1729cc5f3483629'}&units=metric"
+    response = requests.get(url)
+    data = response.json()
+    #To get data I have set data to be the response json and then based on initial output defined what I want to see. First Main and Sys need to be called before I can use temperature, humidity and sunset
+    main = data['main']
+    sys= data['sys']
+    temperature = main['temp']
+    humid = main['humidity']
+    sunset = sys['sunset']
+    #Printing the data when api call is a success
+    if response.status_code == 200:
+        # The response is successful, parse the JSON data
+        data = response.json()
+        print(f"Below is the weather information for {city_name}")  # Print the data if request is successful
+        print(f"The temperature is: {temperature}")
+        print(f"The humidity is: {humid}")
+        print(f"sunset is at: {sunset}")
+    else:
+        # Print an error message if the request failed
+        print(f"Error fetching data: {response.status_code}")
+
+
+    
+        
+get_data()
